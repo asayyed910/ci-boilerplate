@@ -51,6 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['logger'] = 'welcome/app_logs';
+$route['templates'] = 'web/settings/TemplatesController/index';
+$route['templates/create'] = 'web/settings/TemplatesController/create';
+$route['templates/save'] = 'web/settings/TemplatesController/store';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

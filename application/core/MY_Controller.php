@@ -1,7 +1,7 @@
-<?php 
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
-require_once APPPATH.'/interfaces/CrudModelInterface.php';
+require_once APPPATH . '/interfaces/CrudModelInterface.php';
 
 class MY_Controller extends \CI_Controller
 {
@@ -13,18 +13,17 @@ class MY_Controller extends \CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
-		$this->verifyUser(true);
+
+        $this->verifyUser(true);
     }
 
-    function verifyUser($user){
+    function verifyUser($user)
+    {
 
         if ($user) {
-        	return true;
+            return true;
         } else {
-        	exit("Permission Denied");
+            exit("Permission Denied");
         }
     }
-
 }
-
