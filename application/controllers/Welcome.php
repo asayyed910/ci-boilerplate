@@ -17,13 +17,45 @@ class Welcome extends MY_Controller implements CrudModelInterface
         parent::__construct();
         $this->logViewer = new \CILogViewer\CILogViewer();
         // echo APPPATH.'interfaces/CrudModelInterface.php';
+        $this->_css = array();
+        $this->_js  = array();
+
+        /**
+         * PASS IT TO VIEW BY ASSIGNING IT TO DATA ARRAY
+         */
+        $this->data['_css'] = $this->_css;
+        $this->data['_js']  = $this->_js;
     }
 
-    public function index()
+    /**
+     * @param $site
+     */
+    public function index($site = '')
     {
-        // $this->test_composer();
+        $data['_view'] = 'home/home';
+        // $data['_css']                = $this->_css;
+        // $data['_js']                 = $this->_js;
+        $data['_title']              = $this->distributer;
+        $data['_active_distributer'] = $this->distributer;
+        $data['_view']               = 'home/home';
+        // echo "<h3>Welcome to ".$this->uri->segment(1)."</h3>";
+
+        $this->load->view('layout', $data);
         print_r($this->data);
+        // $this->test_composer();
         // $this->load->view('welcome_message');
+
+        $this->load->view('layout', $data);
+    }
+
+    public function contact_us()
+    {
+        echo "<h3>Welcome to contact us</h3>";
+    }
+
+    public function get_todays_date()
+    {
+        echo json_encode(array("status" => true, "msg" => "todays date and time", "datos" => date('d/m h:i')));
     }
 
     public function create()
@@ -83,6 +115,7 @@ class Welcome extends MY_Controller implements CrudModelInterface
     public function app_logs()
     {
         echo $this->logViewer->showLogs();
+
         return;
     }
 

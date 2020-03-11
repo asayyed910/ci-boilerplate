@@ -50,10 +50,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
+
 $route['logger'] = 'welcome/app_logs';
 $route['templates'] = 'web/settings/TemplatesController/index';
 $route['templates/create'] = 'web/settings/TemplatesController/create';
 $route['templates/save'] = 'web/settings/TemplatesController/store';
 
+/**
+ * Ajax Calls to controller
+ */
+
+
+/**
+ * BELOW ROUTES FOR ONLY DISTRIBUTERs only
+ */
+if (function_exists('Distributers') && count(Distributers()) > 0) {
+	
+	foreach (Distributers() as $dist_key => $dist_value) {
+
+		$route[$dist_value]	= 'client/home/Home/index';
+		
+		if ($dist_key == 0) {
+			$dist_value = '';
+		} else {
+			$dist_value .= '/';
+		}
+
+		$route[$dist_value . 'home']                  = 'client/home/Home/index';
+		$route[$dist_value . 'contact-us']              = 'client/contact/Contact';
+	}
+} else {
+	exit("Distributers list not available");
+}
+// echo"<pre>",print_r($route),"</pre>";
+// 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -8,6 +8,15 @@ class MY_Controller extends \CI_Controller
     /**
      * @var array
      */
+    protected $_js = array();
+    /**
+     * @var array
+     */
+    protected $_css = array();
+
+    /**
+     * @var array
+     */
     protected $data = array('MY_Controller');
 
     public function __construct()
@@ -17,9 +26,11 @@ class MY_Controller extends \CI_Controller
         $this->verifyUser(true);
     }
 
-    function verifyUser($user)
+    /**
+     * @param $user
+     */
+    public function verifyUser($user)
     {
-
         if ($user) {
             return true;
         } else {
